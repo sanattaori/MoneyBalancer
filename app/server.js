@@ -2,28 +2,48 @@ var express = require("express");
 var morgan = require('morgan');
 var path = require('path');
 var bodyParser = require('body-parser');
-
+var cookieParser = require('cookie-parser');
 var app = express()
 app.use( bodyParser.json() )
 
 
-var token;
+var token ;
+var userId;
 
 
 app.use(morgan('combined'));
 
-
+app.use(cookieParser());
 app.use("/", express.static("static"));
 
 app.post('/test-page', function(req, res) {
-    token = req.body.token,
-    console.log("token "+token);
+    token = req.body.token;
+    userId = req.body.userId;
     
 });
 
 app.get('/app', function (req, res) {
-  res.sendFile(path.join(__dirname, 'ui', 'app.html'));
+	
+ //res.cookie('name', token, {maxAge : 36000000});
+  
+  var cookiem = req.cookies['name'];
+ 
+ if ((cookiem === 'undefined') || (cookiem === undefined)) {
+ 	res.redirect('/login');
+ }
+ else{
+  	res.sendFile(path.join(__dirname, 'ui', 'app.html'));
+ }
+  
+  
+ 
+});
 
+app.get('/clearcookie', function(req,res){
+      res.clearCookie('name');
+     res.send('Cookie deleted');
+      token === null;
+      cookiem === undefined;
 });
 
 app.get('/login', function (req, res) {

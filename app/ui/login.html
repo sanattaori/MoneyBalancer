@@ -3,19 +3,19 @@
     <head>
 <title>Money Balancer</title>
     <style>
-      
-.footer {
- position: absolute;
-    bottom: 0;
-    width: 100%;
-    /* Set the fixed height of the footer here */
-    height: 60px;
-  background-color:#333;
+  .body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
   }
 
+  .main {
+    flex: 1 0 auto;
+  }
+      
     </style>
-      <!--Import Google Icon Font-->
-      <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
       <!--Import materialize.css-->
       <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
 
@@ -61,11 +61,12 @@
 
             <div class='row'>
               <div class='input-field col s12'>
+              <div align="left"> Password</div>
                 <input type="password" id='password' />
-                <label for='password'>Enter your password</label>
+                
               </div>
               <label style='float: right;'>
-                <a class='pink-text' href='/forgot'><b>Forgot Password?</b></a>
+                <a class='red-text' href='/forgot'><b>Forgot Password?</b></a>
               </label>
             </div>
 
@@ -84,7 +85,7 @@
       
   
 
-
+<!--
 
  <footer class="page-footer footer blue-grey darken-3">
          
@@ -95,8 +96,15 @@
             </div>
           </div>
         </footer>
-
-
+-->
+<footer class="page-footer footer blue-grey darken-3">
+ <div class="footer-copyright">
+            <div class="container">
+            © 2017 Copyright Money Balancer
+            <a class="grey-text text-lighten-4 right" href="http://sanattaori.me/">About Me</a>
+            </div>
+          </div>
+        </footer>
 
 
 
