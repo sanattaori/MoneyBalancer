@@ -10,7 +10,7 @@ var cookie =  document.cookie;
 var length = document.cookie.length;
 
 for (var i = 0; i <= length; i++) {
-	var token = cookie.split('=')[1];
+	var token = cookie.split('=')[3];
 	
 }
 
