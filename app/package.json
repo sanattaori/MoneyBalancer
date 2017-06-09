@@ -1,18 +1,19 @@
 {
-  "name": "moneybalancer",
+  "name": "app",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
   "dependencies": {
     "body-parser": "^1.17.2",
+    "cookie-parser": "^1.4.3",
     "morgan": "^1.8.2",
     "express": "^4.15.3"
   },
   "devDependencies": {},
   "scripts": {
-    "test": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
-  "author": "sanattaori",
+  "author": "",
   "license": "MIT"
 }
