@@ -45,6 +45,6 @@ app.get('/chat', function (req, res) {
 
 
 
-app.listen(8080,"127.0.0.1", () => {
-	console.log(`Server Listening at localhost:8080`);
+app.listen(8080, function () {
+  console.log('Example app listening on port 8080!');
 });
