@@ -21,7 +21,7 @@ function tokenHeaders() {
     };
   }
 
-console.log(token);
+
 
 	$("#logout").click(function(){
 		$.ajax({
