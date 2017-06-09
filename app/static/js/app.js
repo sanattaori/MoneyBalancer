@@ -3,12 +3,7 @@ $(document).ready(function(){
 var token;
 var cookie;
 
-function tokenHeaders() {
-    return {
-      'Content-Type': 'application/json',
-      'Authorization': 'Bearer ' + token
-    };
-  }
+
 
 var cookie =  document.cookie;
 
@@ -26,7 +21,7 @@ function tokenHeaders() {
     };
   }
 
-
+console.log(token);
 
 	$("#logout").click(function(){
 		$.ajax({

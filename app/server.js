@@ -47,7 +47,15 @@ app.get('/clearcookie', function(req,res){
 });
 
 app.get('/login', function (req, res) {
+var cookiem = req.cookies['name'];
+
+if ((cookiem === 'undefined') || (cookiem === undefined)) {
   res.sendFile(path.join(__dirname, 'ui', 'login.html'));
+
+ }
+ else{
+  	res.redirect('/app');
+ }
 
 });
 
