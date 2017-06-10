@@ -41,7 +41,7 @@ app.get('/app', function (req, res) {
 
 app.get('/clearcookie', function(req,res){
       res.clearCookie('name');
-     res.send('Cookie deleted');
+      res.send('Cookie deleted');
       token === null;
       cookiem === undefined;
 });

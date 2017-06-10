@@ -19,15 +19,15 @@ $(signup).click(function(){
 
 
 
-if ( ($('#email').val() && $('#password').val()) == ""  ) {
+if ( $('#email').val()=="" || $('#password').val()==""  ) {
 console.log('sorry');
 if ($('#email').val()=="") {$("#signup").text("Enter Email");}
- else if ($('#email').val().indexOf("@")<1 || $('#email').val().lastIndexOf(".")<$('#email').val().indexOf("@")+2 || $('#email').val().lastIndexOf(".")+2 >= $('#email').val().length) {$("#signup").text("Enter Valid Email");}
+
  else if ($('#password').val()=="") {$("#signup").text("Enter Password");}
 
   else{$("#signup").text("Submitting...");}
 }//if ka bracket
-
+else if ($('#email').val().indexOf("@")<1 || $('#email').val().lastIndexOf(".")<$('#email').val().indexOf("@")+2 || $('#email').val().lastIndexOf(".")+2 >= $('#email').val().length) {$("#signup").text("Enter Valid Email");}
 else{
 
 	$.ajax({
@@ -80,15 +80,15 @@ var d = new Date();
 $(one).click(function(){
 
 
-if ( ($('#email').val() && $('#password').val()) == ""  ) {
+if ( $('#email').val()=="" || $('#password').val()==""  ) {
 console.log('sorry');
 
 if ($('#email').val()=="") {$("#one").text("Enter Email");}
 else if ($('#email').val().indexOf("@")<1 || $('#email').val().lastIndexOf(".")<$('#email').val().indexOf("@")+2 || $('#email').val().lastIndexOf(".")+2 >= $('#email').val().length) {$("#one").text("Enter Valid Email");}
- else if ($('#password').val()=="") {$("#one").text("Enter Password");}
+ //else if ($('#password').val()=="") {$("#one").text("Enter Password");}
   else{$("#one").text("Submitting...");}
 }//if ka bracket
-
+ else if ($('#email').val().indexOf("@")<1 || $('#email').val().lastIndexOf(".")<$('#email').val().indexOf("@")+2 || $('#email').val().lastIndexOf(".")+2 >= $('#email').val().length) {$("#signup").text("Enter Valid Email");}
 else{
 
 	$.ajax({
