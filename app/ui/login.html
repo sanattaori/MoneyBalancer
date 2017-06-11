@@ -2,18 +2,7 @@
   <html>
     <head>
 <title>Money Balancer</title>
-    <style>
-  .body {
-    display: flex;
-    min-height: 100vh;
-    flex-direction: column;
-  }
-
-  .main {
-    flex: 1 0 auto;
-  }
-      
-    </style>
+   
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
       <!--Import materialize.css-->
@@ -21,6 +10,11 @@
 
       <!--Let browser know website is optimized for mobile-->
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+
+
+
+
     </head>
 
     <body>
@@ -66,14 +60,17 @@
                 <input type="password" id='password' />
                 
               </div>
-              <label style='float: right;'>
-                <a class='red-text' href='/forgot'><b>Forgot Password?</b></a>
-              </label>
+              
             </div>
 
             <br />
             <center>
+          
+
               <div class='row'>
+
+<div id="verify" class="g-recaptcha" data-sitekey="6LeCASUUAAAAAB0Vj0JzCINMuJG71pf9MvPOl6JY"></div>
+
                  <a  id="one" class="btn col s12 btn-large waves-effect green">Login</a>
               </div>
               <div class='row'>
@@ -120,5 +117,6 @@
       <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
       <script type="text/javascript" src="js/materialize.min.js"></script>
       <script type="text/javascript" src="js/login.js"></script>
+      <script src='https://www.google.com/recaptcha/api.js'></script>
     </body>
   </html>

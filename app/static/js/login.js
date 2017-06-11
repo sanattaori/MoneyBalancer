@@ -17,9 +17,10 @@ $.ajaxSetup({
 
 $(signup).click(function(){
 
+var response = grecaptcha.getResponse();
 
 
-if ( $('#email').val()=="" || $('#password').val()==""  ) {
+if ( ($('#email').val()=="") || ($('#password').val()=="")  ) {
 console.log('sorry');
 if ($('#email').val()=="") {$("#signup").text("Enter Email");}
 
@@ -28,8 +29,13 @@ if ($('#email').val()=="") {$("#signup").text("Enter Email");}
   else{$("#signup").text("Submitting...");}
 }//if ka bracket
 else if ($('#email').val().indexOf("@")<1 || $('#email').val().lastIndexOf(".")<$('#email').val().indexOf("@")+2 || $('#email').val().lastIndexOf(".")+2 >= $('#email').val().length) {$("#signup").text("Enter Valid Email");}
-else{
 
+else if (response.length == 0) {
+	$("#signup").text("Click Recapcha above");
+}
+
+else{
+$("#signup").text("signup");
 	$.ajax({
 		url: "https://auth.project.sanattaori.me/signup",
 		method: 'post',
@@ -78,19 +84,23 @@ var d = new Date();
 });
 //click signup finish
 $(one).click(function(){
+var response = grecaptcha.getResponse();
 
-
-if ( $('#email').val()=="" || $('#password').val()==""  ) {
+if ( ($('#email').val()=="") || ($('#password').val()=="")  ) {
 console.log('sorry');
 
 if ($('#email').val()=="") {$("#one").text("Enter Email");}
-else if ($('#email').val().indexOf("@")<1 || $('#email').val().lastIndexOf(".")<$('#email').val().indexOf("@")+2 || $('#email').val().lastIndexOf(".")+2 >= $('#email').val().length) {$("#one").text("Enter Valid Email");}
- //else if ($('#password').val()=="") {$("#one").text("Enter Password");}
+
+ else if ($('#password').val()=="") {$("#one").text("Enter Password");}
   else{$("#one").text("Submitting...");}
 }//if ka bracket
- else if ($('#email').val().indexOf("@")<1 || $('#email').val().lastIndexOf(".")<$('#email').val().indexOf("@")+2 || $('#email').val().lastIndexOf(".")+2 >= $('#email').val().length) {$("#signup").text("Enter Valid Email");}
-else{
+ else if ($('#email').val().indexOf("@")<1 || $('#email').val().lastIndexOf(".")<$('#email').val().indexOf("@")+2 || $('#email').val().lastIndexOf(".")+2 >= $('#email').val().length) {$("#one").text("Enter Valid Email");}
 
+ else if (response.length == 0) {
+	$("#one").text("Click Recapcha above");
+}
+else{
+$("#one").text("login");
 	$.ajax({
 		url: "https://auth.project.sanattaori.me/login",
 		method: 'post',
