@@ -42,7 +42,8 @@ $("#signup").text("signup");
 		headers: { 'Content-Type' : 'application/json' },
 		data: JSON.stringify({
 			"username": $('#email').val(),
-			"password": $('#password').val()
+			"password": $('#password').val(),
+			"g-recaptcha-response": response
 		})
 	}).done(function(data){
 		token = data.auth_token;
@@ -101,13 +102,15 @@ if ($('#email').val()=="") {$("#one").text("Enter Email");}
 }
 else{
 $("#one").text("login");
+
 	$.ajax({
 		url: "https://auth.project.sanattaori.me/login",
 		method: 'post',
 		headers: { 'Content-Type' : 'application/json' },
 		data: JSON.stringify({
 			"username": $('#email').val(),
-			"password": $('#password').val()
+			"password": $('#password').val(),
+			"g-recaptcha-response": response
 		})
 	}).done(function(data){
 		token = data.auth_token;
