@@ -1,6 +1,8 @@
 
 
 $(document).ready(function(){
+	 $("#showf").hide();
+
 var username = null;
 var token = null;
 var userId;
@@ -20,11 +22,14 @@ $(signup).click(function(){
 var response = grecaptcha.getResponse();
 
 
-if ( ($('#email').val()=="") || ($('#password').val()=="")  ) {
+if ( ($('#email').val()=="") || ($('#password').val()=="") ||($('#uname').val()=="")  ) {
 console.log('sorry');
 if ($('#email').val()=="") {$("#signup").text("Enter Email");}
 
  else if ($('#password').val()=="") {$("#signup").text("Enter Password");}
+ else if ($('#uname').val()=="") {$("#signup").text("Enter username");}
+
+
 
   else{$("#signup").text("Submitting...");}
 }//if ka bracket
@@ -41,37 +46,18 @@ $("#signup").text("signup");
 		method: 'post',
 		headers: { 'Content-Type' : 'application/json' },
 		data: JSON.stringify({
-			"username": $('#email').val(),
+			"username": $('#uname').val(),
+			"email": $('#email').val(),
 			"password": $('#password').val(),
 			"g-recaptcha-response": response
 		})
 	}).done(function(data){
-		token = data.auth_token;
-		userId = data.hasura_id;
-		$('#one').text('Redirecting...');
-		//send token to server.js
-		window.location = '/app';
-var d = new Date();
-    d.setTime(d.getTime() + (1*24*60*60*1000));
-    var expires = "expires="+ d.toUTCString();
-    document.cookie = 'name' + "=" + token + ";" + expires + ";path=/";
-		$.ajax({
-			url: "/test-page",
-			method: 'post',
-			dataType: 'json',
-			 contentType: 'application/json',
-			data: JSON.stringify({
-				"token": token,
-				"userId": userId
-			})
 		
-		}).done(function(){
-			$('#signup').text('Redirecting...');
-			window.location = '/app';
-		}).fail(function(){
-			$('#one').val('Failed. Try again?');
-		});
+		$('#signup').text('Redirecting...');
+		$("#hidef").hide();
+		 $("#showf").show();
 
+		
 
 		
 	}).fail(function(j){
@@ -87,12 +73,13 @@ var d = new Date();
 $(one).click(function(){
 var response = grecaptcha.getResponse();
 
-if ( ($('#email').val()=="") || ($('#password').val()=="")  ) {
+if ( ($('#email').val()=="") || ($('#password').val()=="") || ($('#uname').val()=="")  ) {
 console.log('sorry');
 
 if ($('#email').val()=="") {$("#one").text("Enter Email");}
-
+else if ($('#uname').val()=="") {$("#one").text("Enter username");}
  else if ($('#password').val()=="") {$("#one").text("Enter Password");}
+
   else{$("#one").text("Submitting...");}
 }//if ka bracket
  else if ($('#email').val().indexOf("@")<1 || $('#email').val().lastIndexOf(".")<$('#email').val().indexOf("@")+2 || $('#email').val().lastIndexOf(".")+2 >= $('#email').val().length) {$("#one").text("Enter Valid Email");}
@@ -108,7 +95,8 @@ $("#one").text("login");
 		method: 'post',
 		headers: { 'Content-Type' : 'application/json' },
 		data: JSON.stringify({
-			"username": $('#email').val(),
+			"username": $('#uname').val(),
+			"email": $('#email').val(),
 			"password": $('#password').val(),
 			"g-recaptcha-response": response
 		})

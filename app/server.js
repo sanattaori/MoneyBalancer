@@ -22,13 +22,20 @@ app.post('/test-page', function(req, res) {
     
 });
 
+app.get('/verify-email/:token',function(req,res){
+token = req.params.token;
+
+res.cookie('name', token, {maxAge : 36000000});
+res.redirect('/app');
+});
+
 app.get('/app', function (req, res) {
 	
  //res.cookie('name', token, {maxAge : 36000000});
   
   var cookiem = req.cookies['name'];
  
- if ((cookiem === 'undefined') || (cookiem === undefined)) {
+ if ((cookiem === 'undefined') || (cookiem === undefined) ||(cookiem === 'null')||(cookiem === null) ||(cookiem === "") ) {
  	res.redirect('/login');
  }
  else{
@@ -49,7 +56,7 @@ app.get('/clearcookie', function(req,res){
 app.get('/login', function (req, res) {
 var cookiem = req.cookies['name'];
 
-if ((cookiem === 'undefined') || (cookiem === undefined)) {
+if ((cookiem === 'undefined') || (cookiem === undefined)||(cookiem === 'null')||(cookiem === null)||(cookiem === "")){
   res.sendFile(path.join(__dirname, 'ui', 'login.html'));
 
  }
