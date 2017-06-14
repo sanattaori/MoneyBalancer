@@ -1,6 +1,8 @@
 $(document).ready(function(){
 
 
+  $(".button-collapse").sideNav();
+
 
 
 
@@ -42,7 +44,7 @@ function tokenHeaders() {
 
 
 
-	$("#logout").click(function(){
+	$(logout).click(function(){
 		$.ajax({
 			url: 'https://auth.project.sanattaori.me/user/logout',
 			headers: tokenHeaders(),

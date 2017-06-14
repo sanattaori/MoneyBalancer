@@ -2,6 +2,24 @@
   <!DOCTYPE html>
   <html>
     <head>
+    <style>
+  body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+  }
+.block{
+  padding-left:20px;
+  padding-right: 20px;
+  padding-bottom: 10px;
+  padding-top: 10px;
+}
+
+  main {
+    flex: 1 0 auto;
+  }
+      
+    </style>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
 
@@ -13,8 +31,172 @@
     </head>
 
     <body>
-    App in alpha stage  (currently testing API)
-    <a id="logout" class="waves-effect waves-light btn"></a>
+    
+<nav class="nav">
+    <div class="nav-wrapper blue lighten-1">
+        <a href="/" class="brand-logo center">Money Balancer</a>
+        <a href="#" data-activates="mobile-demo" class="button-collapse right"><i class="material-icons">menu</i></a>
+        <ul id="nav-mobile " class="right hide-on-med-and-down">
+            <li><a id="homeMenu" href="/login">Home</a></li>
+            <li><a id="profileMenu" href="profile.html">Profile</a></li>
+            <li><a id="chat" href="/chat">Chat</a></li>
+            <li><a id="logout">Logout</a></li>
+        </ul>
+        <ul class="side-nav" id="mobile-demo">
+            <li><a id="homeMenu" href="/">Home</a></li>
+            <li><a id="chat" href="chat">Chat</a></li>
+            <li><a id="profileMenu" href="/profile.html">Profile</a></li>
+            <li><a id="logout">Logout</a></li>
+        </ul>
+    </div>
+</nav>
+
+
+
+
+
+
+
+
+     
+  
+<div class="block">
+ <div  id="liste"> <h5>List of expenses</h5> </div>
+
+   <table class=" responsive-table">
+        <thead>
+          <tr>
+              <th>Title</th>
+              <th>Description</th>
+              <th>Date</th>
+              <th>Amount</th>
+              <th>Return/Get</th>
+              <th>Owner</th>
+
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td>dominos</td>
+            <td>Pizza Party</td>
+            <td>May 1,2017</td>
+            <td>Rs 100</td>
+            <td>Get Rs 50</td>
+            <td>Me</td>
+          </tr>
+          <tr>
+            <td>test</td>
+            <td>Purchase</td>
+            <td>May 2,2017</td>
+            <td>Rs 2000</td>
+            <td>Return Rs 1000</td>
+            <td>Me</td>
+
+          </tr>
+          <tr>
+            <td>friend </td>
+           <td>test </td>
+            <td>May 3,2017</td>
+            <td>Rs 30000</td>
+            <td>Get Rs 20000</td>
+            <td>Me</td>
+          </tr>
+          <tr>
+            <td>Fees</td>
+            <td>College fees</td>
+            <td>May 4,2017</td>
+            <td>Rs 50000</td>
+            <td>Return Rs 50000</td>
+            <td>Ravi</td>
+          </tr>
+          <tr>
+            <td>test</td>
+            <td>test</td>
+            <td>May 6,2017</td>
+            <td>Rs 1000</td>
+            <td>Get Rs 1000</td>
+            <td>AB</td>
+          </tr>
+        </tbody>
+      </table>
+
+<div class="section"></div>
+<div id="addn">
+<h5>Add New Entry</h5></div>
+ <div  class="row pad1">
+        <div class="col s12">
+          Title :
+          <div class="input-field inline">
+            <input >
+            <label ></label>
+          </div>
+        </div>
+      </div>
+
+   
+
+      <div class="row pad1">
+        <div class="col s12">
+         Amount
+          <div class="input-field inline">
+            <input type="number">
+            <label ></label>
+          </div>
+        </div>
+      </div>
+
+      <div  class="row pad1">
+        <div class="col s12">
+          Transaction Date :
+          <div class="input-field inline">
+            <input type="date">
+            <label ></label>
+          </div>
+      </div>
+</div>
+      <div class="row pad1">
+        <div class="col s12">
+          Description
+          <div class="input-field inline">
+            <input type="text
+            ">
+            <label ></label>
+          </div>
+        </div>
+      </div>
+<div class="col s12 pad1">
+          Transaction Members 
+    <div class="chip chips-initial">
+    Ravi
+    <i class="close material-icons">close</i>
+  </div>
+  <div class="chip chips-initial">
+    Akshay
+    <i class="close material-icons">close</i>
+  </div>
+</div>
+
+<div style="padding-top: 10px; padding-bottom: 10px;" class="pad1">
+<button class="btn waves-effect waves-light " type="submit" name="action">Submit
+    <i class="material-icons right">send</i> </div>
+  </button>
+</div>
+
+
+   
+<!--block with padding-->
+</div>
+
+
+    <footer class="page-footer footer blue-grey darken-3">
+ <div class="footer-copyright">
+            <div class="container">
+            © 2017 Copyright Money Balancer
+            <a class="grey-text text-lighten-4 right" href="http://sanattaori.me/">About Me</a>
+            </div>
+          </div>
+        </footer>
       <!--Import jQuery before materialize.js-->
       <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
       <script type="text/javascript" src="js/materialize.min.js"></script>
