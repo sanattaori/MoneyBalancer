@@ -1,3 +1,4 @@
+
 $(document).ready(function(){
 
 
@@ -19,14 +20,8 @@ for (var i = 0; i <= length; i++) {
 }
 */
 
-$.ajaxSetup({
-    // xhrFields: { withCredentials: true },
-    crossDomain: true,
-    headers: {
-      'X-Hasura-Role' : 'user'
-    }
-  });
-
+var user_ids;
+var user_id;
 
 
 function readCookie(name) {
@@ -41,9 +36,9 @@ function readCookie(name) {
 }
 
 var token = readCookie('name')
-var id = readCookie('id')
-console.log(id);
-var userId;
+user_ids = readCookie('id')
+ user_id = parseInt(user_ids);
+console.log(user_id);
 var username = null;
 
 var setUsername = function (u) {
@@ -70,14 +65,14 @@ function tokenHeaders() {
       'Authorization': 'Bearer ' + token
     };
   }
-
+var _this = this;
 $.ajax({
 	url: 'https://auth.project.sanattaori.me/user/account/info',
 	headers: tokenHeaders(),
 	method: 'GET'
 
 }).done(function(data){
-	setUserId(data.hasura_id);
+ setUserId(data.hasura_id);
 	setUsername(data.username);
 
 
@@ -104,6 +99,9 @@ else if($("#description").val()==""){
 	$("#insert").text("Enter description");
 }
 else{
+
+var amount = $("#amount").val();
+var date = $("#date").val();
 	$.ajax({
 		url: 'https://data.project.sanattaori.me/v1/query',
 		method: 'POST',
@@ -114,7 +112,7 @@ else{
 				"table": "moneyb",
 				"objects": [
              {
-             "user_id": id,
+             user_id ,
               "title"   : $('#title').val(),
               "description" : $("#description").val() ,
               "date" : $("#date").val(),
@@ -131,7 +129,7 @@ else{
 		console.log("updated");
 	}).fail(function(ja){
 		console.log(ja);
-
+		console.log(user_id);
 		alert('Fail Try again'+JSON.parse(ja.responseText).message);
 	});
 }
