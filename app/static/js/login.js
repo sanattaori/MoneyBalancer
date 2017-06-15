@@ -66,6 +66,7 @@ $("#signup").hide();
 		console.error(j);
 		alert("FAILED: " + JSON.parse(j.responseText).message);
 		$('#signup').val('Failed. Try again?');
+		location.reload();
 	});
 }//else ka bracket
 
@@ -135,6 +136,7 @@ $("#signup").hide();
 		console.error(j);
 		alert("FAILED: " + JSON.parse(j.responseText).message);
 		$('#one').val('Failed. Try again?');
+		location.reload();
 	});
 }//else ka bracket
 

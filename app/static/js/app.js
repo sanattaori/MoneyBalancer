@@ -38,13 +38,13 @@ function readCookie(name) {
 var token = readCookie('name')
 user_ids = readCookie('id')
  user_id = parseInt(user_ids);
-console.log(user_id);
+//console.log(user_id);
 var username = null;
 
 var setUsername = function (u) {
     username = u;
     //$('#userinfo').text(username);
-    console.log(username);
+   // console.log(username);
   };
 
 
@@ -84,7 +84,7 @@ $.ajax({
 
 $(insert).click(function(){
 
-console.log("insert");
+//console.log("insert");
 
 if ($('#title').val()=="") {
 $("#insert").text("Enter title");
@@ -143,7 +143,7 @@ $.ajax({
     }
 })
 }).done(function(data){
-	console.log(data);
+	//console.log(data);
 	var tr;
     for (var i = 0; i < data.length; i++) {
         tr = $('<tr/>');
@@ -158,8 +158,8 @@ $.ajax({
 
 
 	}).fail(function(ja){
-		console.log(ja);
-		console.log(user_id);
+		//console.log(ja);
+		//console.log(user_id);
 		alert('Fail Try again'+JSON.parse(ja.responseText).message);
 	});
 }
@@ -192,7 +192,7 @@ $.ajax({
     }
 })
 }).done(function(data){
-	console.log(data);
+	//console.log(data);
 	var tr;
     for (var i = 0; i < data.length; i++) {
         tr = $('<tr/>');
