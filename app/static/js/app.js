@@ -217,6 +217,8 @@ $.ajax({
 		}).done(function(){
 			window.location = '/login';
 			document.cookie = "name=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+			document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+			document.cookie = "dinoisses=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
 		}).fail(function(j){
 			console.error(j);
 			alert('Logout Failed! Try Refreshing?');
