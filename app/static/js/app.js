@@ -158,6 +158,7 @@ $.ajax({
 
 
 	}).fail(function(ja){
+		location.reload();
 		//console.log(ja);
 		//console.log(user_id);
 		alert('Fail Try again'+JSON.parse(ja.responseText).message);
@@ -221,6 +222,7 @@ $.ajax({
 			document.cookie = "dinoisses=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
 		}).fail(function(j){
 			console.error(j);
+			location.reload();
 			alert('Logout Failed! Try Refreshing?');
 		});
 	});
