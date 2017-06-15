@@ -40,7 +40,9 @@ else if (response.length == 0) {
 }
 
 else{
-$("#signup").text("signup");
+$("#one").hide();
+$("#signup").hide();
+
 	$.ajax({
 		url: "https://auth.project.sanattaori.me/signup",
 		method: 'post',
@@ -55,7 +57,7 @@ $("#signup").text("signup");
 		
 		$('#signup').text('Redirecting...');
 		$("#hidef").hide();
-		 $("#showf").show();
+		$("#showf").show();
 
 		
 
@@ -88,7 +90,8 @@ else if ($('#uname').val()=="") {$("#one").text("Enter username");}
 	$("#one").text("Click Recapcha above");
 }
 else{
-$("#one").text("login");
+$("#one").hide();
+$("#signup").hide();
 
 	$.ajax({
 		url: "https://auth.project.sanattaori.me/login",
@@ -106,10 +109,12 @@ $("#one").text("login");
 		$('#one').text('Redirecting...');
 		//send token to server.js
 		window.location = '/app';
-var d = new Date();
+	//set cookie
+	var d = new Date();
     d.setTime(d.getTime() + (1*24*60*60*1000));
     var expires = "expires="+ d.toUTCString();
     document.cookie = 'name' + "=" + token + ";" + expires + ";path=/";
+	
 		$.ajax({
 			url: "/test-page",
 			method: 'post',
