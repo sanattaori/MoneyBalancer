@@ -1,6 +1,6 @@
 
 $(document).ready(function(){
-
+$("#newa").hide()
 
 
   $(".button-collapse").sideNav();
@@ -65,7 +65,7 @@ function tokenHeaders() {
       'Authorization': 'Bearer ' + token
     };
   }
-var _this = this;
+
 $.ajax({
 	url: 'https://auth.project.sanattaori.me/user/account/info',
 	headers: tokenHeaders(),
@@ -100,8 +100,7 @@ else if($("#description").val()==""){
 }
 else{
 
-var amount = $("#amount").val();
-var date = $("#date").val();
+
 	$.ajax({
 		url: 'https://data.project.sanattaori.me/v1/query',
 		method: 'POST',
@@ -127,6 +126,37 @@ var date = $("#date").val();
 	}).done(function(data){
 		console.log(data);
 		console.log("updated");
+		$("#insert").hide()
+		$("#newa").show()
+$("#tabl").load(location.href + " #tabl");
+//on refresh load data
+$.ajax({
+	url: 'https://data.project.sanattaori.me/v1/query',
+	method: 'POST',
+	headers: tokenHeaders(),
+	data: JSON.stringify({
+    "type" : "select",
+    "args" : {
+        "table" : "moneyb",
+        "columns": [ "title", "amount", "date", "description"]
+     
+    }
+})
+}).done(function(data){
+	console.log(data);
+	var tr;
+    for (var i = 0; i < data.length; i++) {
+        tr = $('<tr/>');
+        tr.append("<td>" + data[i].title + "</td>");
+        tr.append("<td>" + data[i].description + "</td>");
+        tr.append("<td>" + data[i].date + "</td>");
+        tr.append("<td>" + data[i].amount + "</td>");
+        $('#tabl').append(tr);
+    }
+});
+//done 
+
+
 	}).fail(function(ja){
 		console.log(ja);
 		console.log(user_id);
@@ -136,7 +166,43 @@ var date = $("#date").val();
 
 });
 
+$(newa).click(function(){
+$("#newa").hide()
+$("#insert").show()
+$('#title').val('')
+$('#amount').val('')
+$('#description').val('')
+$('#date').val('')
+//location.reload();
 
+});
+
+//fetch
+
+$.ajax({
+	url: 'https://data.project.sanattaori.me/v1/query',
+	method: 'POST',
+	headers: tokenHeaders(),
+	data: JSON.stringify({
+    "type" : "select",
+    "args" : {
+        "table" : "moneyb",
+        "columns": [ "title", "amount", "date", "description"]
+     
+    }
+})
+}).done(function(data){
+	console.log(data);
+	var tr;
+    for (var i = 0; i < data.length; i++) {
+        tr = $('<tr/>');
+        tr.append("<td>" + data[i].title + "</td>");
+        tr.append("<td>" + data[i].description + "</td>");
+        tr.append("<td>" + data[i].date + "</td>");
+        tr.append("<td>" + data[i].amount + "</td>");
+        $('#tabl').append(tr);
+    }
+});
 
 
 
