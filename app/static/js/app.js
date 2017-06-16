@@ -1,3 +1,83 @@
+function readCookie(name) {
+    var nameEQ = name + "=";
+    var ca = document.cookie.split(';');
+    for(var i=0;i < ca.length;i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1,c.length);
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+    }
+    return null;
+}
+
+function tokenHeaders() {
+    return {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + token
+    };
+  }
+
+var token = readCookie('name')
+
+
+ function showData(id)
+{
+	$.ajax({
+		url: 'https://data.project.sanattaori.me/v1/query',
+		method: 'post',
+		headers:tokenHeaders(),
+		data: JSON.stringify(
+
+			{  "type" : "delete",
+         "args" : {
+            "table"     : "moneyb" ,
+            "where"     : { "id" : { "$eq" : id } }
+           
+         }
+      }
+
+		)
+	}).done(function(){
+		 Materialize.toast('Item Deleted', 2000, 'rounded')
+
+		 //refresh table again
+$("#tabl").load(location.href + " #tabl");
+//on refresh load data
+$.ajax({
+	url: 'https://data.project.sanattaori.me/v1/query',
+	method: 'POST',
+	headers: tokenHeaders(),
+	data: JSON.stringify({
+    "type" : "select",
+    "args" : {
+        "table" : "moneyb",
+        "columns": [ "id", "title", "amount", "date", "description"]
+     
+    }
+})
+}).done(function(data){
+	//console.log(data);
+	
+	var tr;
+    for (var i = 0; i < data.length; i++) {
+        tr = $('<tr/>');
+        tr.append("<td>" + data[i].title + "</td>");
+        tr.append("<td>" + data[i].description + "</td>");
+        tr.append("<td>" + data[i].date + "</td>");
+        tr.append("<td>" + data[i].amount + "</td>");
+        tr.append("<td onclick = showData("+data[i].id  +"); >" + "<i class="+ "material-icons"+ ">delete</i>"+" </td> ");
+        $('#tabl').append(tr);
+    }
+});
+//done 
+
+		 //
+
+
+	}).fail(function(){
+		Materialize.toast('Fail to delete', 2000, 'rounded')
+	});
+    
+}
 
 $(document).ready(function(){
 $("#newa").hide()
@@ -24,18 +104,7 @@ var user_ids;
 var user_id;
 
 
-function readCookie(name) {
-    var nameEQ = name + "=";
-    var ca = document.cookie.split(';');
-    for(var i=0;i < ca.length;i++) {
-        var c = ca[i];
-        while (c.charAt(0)==' ') c = c.substring(1,c.length);
-        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
-    }
-    return null;
-}
 
-var token = readCookie('name')
 user_ids = readCookie('id')
  user_id = parseInt(user_ids);
 //console.log(user_id);
@@ -59,12 +128,9 @@ var setUserId = function (v) {
   };
 
 
-function tokenHeaders() {
-    return {
-      'Content-Type': 'application/json',
-      'Authorization': 'Bearer ' + token
-    };
-  }
+
+
+ 
 
 $.ajax({
 	url: 'https://auth.project.sanattaori.me/user/account/info',
@@ -77,7 +143,9 @@ $.ajax({
 
 
 }).fail(function(){
-	alert('fail to fetch user info refresh page or login again');
+	//alert('fail to fetch user info refresh page or login again');
+	Materialize.toast('refresh', 2000, 'rounded')
+	location.reload();
 });
 
 //insert 
@@ -124,6 +192,7 @@ else{
 		})
 		
 	}).done(function(data){
+		Materialize.toast('Item insert', 2000, 'rounded')
 		console.log(data);
 		console.log("updated");
 		$("#insert").hide()
@@ -138,12 +207,13 @@ $.ajax({
     "type" : "select",
     "args" : {
         "table" : "moneyb",
-        "columns": [ "title", "amount", "date", "description"]
+        "columns": [ "id", "title", "amount", "date", "description"]
      
     }
 })
 }).done(function(data){
 	//console.log(data);
+	
 	var tr;
     for (var i = 0; i < data.length; i++) {
         tr = $('<tr/>');
@@ -151,6 +221,7 @@ $.ajax({
         tr.append("<td>" + data[i].description + "</td>");
         tr.append("<td>" + data[i].date + "</td>");
         tr.append("<td>" + data[i].amount + "</td>");
+        tr.append("<td onclick = showData("+data[i].id  +"); >" + "<i class="+ "material-icons"+ ">delete</i>"+" </td> ");
         $('#tabl').append(tr);
     }
 });
@@ -188,19 +259,23 @@ $.ajax({
     "type" : "select",
     "args" : {
         "table" : "moneyb",
-        "columns": [ "title", "amount", "date", "description"]
+        "columns": ["id", "title", "amount", "date", "description"]
      
     }
 })
 }).done(function(data){
-	//console.log(data);
+	console.log(data);
+
+
 	var tr;
     for (var i = 0; i < data.length; i++) {
         tr = $('<tr/>');
+
         tr.append("<td>" + data[i].title + "</td>");
         tr.append("<td>" + data[i].description + "</td>");
         tr.append("<td>" + data[i].date + "</td>");
         tr.append("<td>" + data[i].amount + "</td>");
+        tr.append("<td onclick = showData("+data[i].id  +"); >" + "<i class="+ "material-icons"+ ">delete</i>"+" </td> ");
         $('#tabl').append(tr);
     }
 });
@@ -223,6 +298,7 @@ $.ajax({
 		}).fail(function(j){
 			console.error(j);
 			location.reload();
+			Materialize.toast('Re', 2000, 'rounded')
 			alert('Logout Failed! Try Refreshing?');
 		});
 	});
