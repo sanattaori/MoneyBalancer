@@ -92,7 +92,16 @@ app.get('/forgot', function (req, res) {
  });
 
 app.get('/chat', function (req, res) {
-     res.send("This feature is comming soon with firebase stay tuned");
+     var cookiem = req.cookies['name'];
+
+if ((cookiem === 'undefined') || (cookiem === undefined)||(cookiem === 'null')||(cookiem === null)||(cookiem === "")){
+  
+res.redirect('/app');
+ }
+ else{
+    res.sendFile(path.join(__dirname, 'ui', 'chat.html'));
+ }
+
  });
 
 

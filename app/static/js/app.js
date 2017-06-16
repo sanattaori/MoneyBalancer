@@ -37,7 +37,7 @@ var token = readCookie('name')
 
 		)
 	}).done(function(){
-		 Materialize.toast('Item Deleted', 2000, 'rounded')
+		 //Materialize.toast('Item Deleted', 2000, 'rounded')
 
 		 //refresh table again
 $("#tabl").load(location.href + " #tabl");

@@ -1,0 +1,91 @@
+<html>
+    <head>
+ 
+   <link href="/css/chats.css" rel="stylesheet" />
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+
+      <!--Import materialize.css-->
+      <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+
+    <body>
+    <main>
+<nav class="nav">
+    <div class="nav-wrapper blue lighten-1">
+        <a href="/" class="brand-logo center">Money Balancer</a>
+        <a href="#" data-activates="mobile-demo" class="button-collapse right"><i class="material-icons">menu</i></a>
+        <ul id="nav-mobile " class="right hide-on-med-and-down">
+            <li><a id="homeMenu" href="/login">Home</a></li>
+            
+            <li><a id="app" href="/app">App</a></li>
+            <li><a id="logout">Logout</a></li>
+        </ul>
+        <ul class="side-nav" id="mobile-demo">
+            <li><a id="homeMenu" href="/">Home</a></li>
+
+            <li><a id="app" href="/app">App</a></li>
+            
+            <li><a id="logout">Logout</a></li>
+        </ul>
+    </div>
+</nav>
+
+
+
+
+
+
+
+
+     
+  
+<div class="block comment">
+ 
+
+   <table class=" bordered">
+        <thead>
+          <tr >
+
+              <th>Name</th>
+              <th>Message</th>
+              <th>Date</th>
+              
+              
+
+          </tr>
+        </thead>
+
+        <tbody id="tabl">
+
+
+        </tbody>
+      </table>
+</div>
+
+</main>
+
+
+          <input  style=" bottom: 0; position: absolute; width: 90%;  " id="textarea1" class="materialize-textarea"></input>
+
+        
+      <div align="right" class="col s12 m4 l2"> <a
+      id="send" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">send</i></a></div>
+
+      
+
+
+
+
+      <!--Import jQuery before materialize.js-->
+      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+      <script type="text/javascript" src="js/materialize.min.js"></script>
+
+      <script type="text/javascript" src="js/chat.js"></script>
+
+    </body>
+  </html>
