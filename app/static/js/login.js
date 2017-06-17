@@ -1,5 +1,79 @@
+/*
+      gapi.load('auth2', function() {
+        auth2 = gapi.auth2.init({
+          client_id: '34086388208-6ss2aot6thu6c5ephla48bj43til1pgp.apps.googleusercontent.com',
+          // Scopes to request in addition to 'profile' and 'email'
+          
+          scope: 'email profile openid',
+          response_type: 'id_token permission'
+        });
+      });
+
+$('#signinButton').click(function() {
+    // signInCallback defined in step 6.
+   // auth2.grantOfflineAccess().then(signInCallback);
+    gapi.auth2.authorize({
+  client_id: '34086388208-6ss2aot6thu6c5ephla48bj43til1pgp.apps.googleusercontent.com',
+  scope: 'email profile openid',
+  response_type: 'id_token permission'
+}, function(response) {
+  if (response.error) {
+    // An error happened!
+    return;
+  }
+  // The user authorized the application for the scopes requested.
+  var accessToken = response.access_token;
+  var idToken = response.id_token;
+  console.log(accessToken);
+  // You can also now use gapi.client to perform authenticated requests.
+  var url = 'https://auth.project.sanattaori.me/google/authenticate?access_token='
+   +accessToken ;
+
+   $.ajax({
+   	xhrFeilds: {withCredentials: true},
+   	crossDomain:true,
+   	type: 'GET',
+   	url: url,
+   	success: function(response){
+   		console.log(response);
+   	}
+   });
+
+});
+
+  });
+
+function signInCallback(authResult) {
+  if (authResult['code']) {
+
+    // Hide the sign-in button now that the user is authorized, for example:
+    $('#signinButton').attr('style', 'display: none');
+console.log(authResult['code']);
+    // Send the code to the server
+     var accessToken = authResult['access_token'];
+
+  // And send the token over to the server
+  var url = ''
+   +accessToken ;
+  $.get(url, function(response) {
+    // Sample response:
+    // {
+    //   "hasura_id": 23,
+    //   "hasura_roles": ["user"],
+    //   "auth_token": "aeo8u3dhauh3d39pdsiaw",
+    //   "new_user": true
+    // }
+    console.log(response);
+  });
+
+  } else {
+    // There was an error.
+  }
+}
 
 
+
+*/
 $(document).ready(function(){
 	 $("#showf").hide();
 

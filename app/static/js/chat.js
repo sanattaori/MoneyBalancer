@@ -1,4 +1,5 @@
 
+
 function readCookie(name) {
     var nameEQ = name + "=";
     var ca = document.cookie.split(';');
@@ -37,7 +38,7 @@ var token = readCookie('name')
 
 		)
 	}).done(function(){
-		 Materialize.toast('Item Deleted', 2000, 'rounded')
+		 //Materialize.toast('Item Deleted', 2000, 'rounded')
 $("#tabl").load(location.href + " #tabl");
 		 //refresh table again
 		 //
@@ -55,7 +56,7 @@ $.ajax({
     }
 })
 }).done(function(data){
-	console.log(data);
+	//console.log(data);
 
 
 	var tr;
@@ -78,7 +79,8 @@ $.ajax({
 $(document).ready(function(){
 var usernames;
 
-
+	var ekbar = undefined;
+	var l;
 
 
   $(".button-collapse").sideNav();
@@ -139,7 +141,7 @@ var datetime =  currentdate.getDate() + "/"
                 + currentdate.getSeconds();
 
 $(send).click(function(){
-	console.log("click");
+	//console.log("click");
 	if ($('#textarea1').val()=="") {
 		Materialize.toast('Enter Message ', 2000, 'rounded')
 	}
@@ -185,7 +187,7 @@ $.ajax({
     }
 })
 }).done(function(data){
-	console.log(data);
+	//console.log(data);
 
 
 	var tr;
@@ -211,6 +213,8 @@ $.ajax({
 });
 
 
+function loadlink(){
+
 $.ajax({
 	url: 'https://data.project.sanattaori.me/v1/query',
 	method: 'POST',
@@ -224,9 +228,12 @@ $.ajax({
     }
 })
 }).done(function(data){
-	console.log(data);
-
-
+	//console.log(data);
+	//	console.log(l);
+if ((Object.keys(data).length)>l) {
+	//console.log("data added");
+	//so update table
+	$('#tabl ').html('');
 	var tr;
     for (var i = 0; i < data.length; i++) {
         tr = $('<tr/>');
@@ -238,7 +245,65 @@ $.ajax({
         tr.append("<td onclick = showData("+data[i].id  +"); >" + "<i class="+ "material-icons"+ ">delete</i>"+" </td> ");
         $('#tabl').append(tr);
     }
+
+}
+
+else if ((Object.keys(data).length)<l) {
+	//console.log("data subtracted");
+	//so update table
+	$('#tabl ').html('');
+	var tr;
+    for (var i = 0; i < data.length; i++) {
+        tr = $('<tr/>');
+
+        tr.append("<td>" + data[i].name + "</td>");
+        tr.append("<td>" + data[i].text + "</td>");
+        tr.append("<td>" + data[i].time + "</td>");
+
+        tr.append("<td onclick = showData("+data[i].id  +"); >" + "<i class="+ "material-icons"+ ">delete</i>"+" </td> ");
+        $('#tabl').append(tr);
+    }
+}
+
+else{
+	//console.log("no data added");
+
+	if (!ekbar) {
+    ekbar = true;
+    	var tr;
+    for (var i = 0; i < data.length; i++) {
+        tr = $('<tr/>');
+
+        tr.append("<td>" + data[i].name + "</td>");
+        tr.append("<td>" + data[i].text + "</td>");
+        tr.append("<td>" + data[i].time + "</td>");
+
+        tr.append("<td onclick = showData("+data[i].id  +"); >" + "<i class="+ "material-icons"+ ">delete</i>"+" </td> ");
+        $('#tabl').append(tr);
+    }
+  }
+}
+
+	
+
+	
+l = Object.keys(data).length;
+//console.log(l);
 });
+
+
+
+}//function ka ending
+
+loadlink(); // This will run on page load
+setInterval(function(){
+	//console.log(a);
+
+	
+	//$("#tabl").children().text("")
+   loadlink() // this will run after every 5 seconds
+}, 5000);
+
 
 
 });
