@@ -4,7 +4,7 @@ To extend my understanding and learning of Nodejs, Hasura, I developed a small w
 project, I build this project as part of hasura Product development internship and for better understanding of hasura APIs. I have implemented complete backend of my project using hasura auth and data APIs.
 
 
-To Run this application, run command
+## Installing and Running Project
 
 - Clone project
 ```
@@ -18,3 +18,8 @@ npm install
 ```
 npm start
 ```
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+
